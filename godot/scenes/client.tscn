@@ -1,0 +1,23 @@
+[gd_scene load_steps=2 format=3 uid="uid://bt1im2735haq1"]
+
+[ext_resource type="Script" path="res://scripts/client.cs" id="1_arl4c"]
+
+[node name="Client" type="Node"]
+script = ExtResource("1_arl4c")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HFlowContainer" type="HFlowContainer" parent="."]
+offset_left = 1536.0
+offset_right = 1920.0
+offset_bottom = 256.0
+size_flags_horizontal = 4
+
+[node name="Panel" type="Panel" parent="HFlowContainer"]
+visible = false
+custom_minimum_size = Vector2(384, 256)
+layout_mode = 2
+
+[node name="Connected" type="ColorRect" parent="HFlowContainer"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2

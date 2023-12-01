@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://b63s46lvgqpvv"]
+
+[ext_resource type="Script" path="res://scripts/urchin.gd" id="1_3k7fh"]
+[ext_resource type="Texture2D" uid="uid://dppgbouwlfiap" path="res://images/sea-urchin.png" id="1_bq6gn"]
+[ext_resource type="AudioStream" uid="uid://uqkvny7q3ulx" path="res://sounds/pic.mp3" id="3_brg6c"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2w0dt"]
+radius = 45.3
+height = 129.96
+
+[node name="Urchin" type="CharacterBody2D" groups=["urchin"]]
+script = ExtResource("1_3k7fh")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("1_bq6gn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_2w0dt")
+
+[node name="DieSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_brg6c")
+
+[connection signal="finished" from="DieSound" to="." method="_on_die_sound_finished"]

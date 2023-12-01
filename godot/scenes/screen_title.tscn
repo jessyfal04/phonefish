@@ -1,0 +1,63 @@
+[gd_scene load_steps=4 format=3 uid="uid://c0745lo7qqs4k"]
+
+[ext_resource type="Texture2D" uid="uid://cut14rp1rs7a7" path="res://images/clown-fish.png" id="1_bwigw"]
+[ext_resource type="Script" path="res://scripts/screen_title.gd" id="1_xj73s"]
+[ext_resource type="AudioStream" uid="uid://hk5jx74k2ymc" path="res://sounds/screenTitle.mp3" id="3_2ubc3"]
+
+[node name="ScreenTitle" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_xj73s")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.454902, 0.72549, 1, 1)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -256.0
+offset_top = -256.0
+offset_right = 256.0
+offset_bottom = 256.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(256, 256)
+texture = ExtResource("1_bwigw")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -180.0
+offset_bottom = -116.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/bold_font_size = 40
+bbcode_enabled = true
+text = "[center][b]Appuyez pour lancer ![/b][/center]"
+fit_content = true
+
+[node name="TextTimer" type="Timer" parent="RichTextLabel"]
+autostart = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_2ubc3")
+autoplay = true
+
+[connection signal="timeout" from="RichTextLabel/TextTimer" to="." method="_on_text_timer_timeout"]

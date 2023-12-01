@@ -1,0 +1,93 @@
+[gd_scene load_steps=10 format=3 uid="uid://c8p721fvgyf1u"]
+
+[ext_resource type="PackedScene" uid="uid://tfmupxd17gly" path="res://scenes/fish.tscn" id="1_8k17u"]
+[ext_resource type="Script" path="res://scripts/game.gd" id="1_jmu6g"]
+[ext_resource type="PackedScene" uid="uid://d1728d0csealg" path="res://scenes/ocean.tscn" id="2_lav8c"]
+[ext_resource type="Script" path="res://scripts/stars.gd" id="3_luthl"]
+[ext_resource type="AudioStream" uid="uid://c6t2n3mjnlp1o" path="res://sounds/game.mp3" id="4_0e5t8"]
+[ext_resource type="Script" path="res://scripts/urchins.gd" id="4_mur77"]
+[ext_resource type="Texture2D" uid="uid://dub66o15v6f61" path="res://images/starfishBlack.png" id="7_b5e7e"]
+[ext_resource type="Script" path="res://scripts/game_timer.gd" id="7_k6ej6"]
+[ext_resource type="Theme" uid="uid://clusl786h284" path="res://themes/new_theme.tres" id="9_irv8p"]
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_jmu6g")
+
+[node name="Ocean" parent="." instance=ExtResource("2_lav8c")]
+z_index = -1
+metadata/_edit_lock_ = true
+
+[node name="Stars" type="Node2D" parent="."]
+script = ExtResource("3_luthl")
+
+[node name="Timer" type="Timer" parent="Stars"]
+wait_time = 2.0
+autostart = true
+
+[node name="Urchins" type="Node2D" parent="."]
+script = ExtResource("4_mur77")
+
+[node name="Timer" type="Timer" parent="Urchins"]
+wait_time = 5.0
+autostart = true
+
+[node name="Fish" parent="." instance=ExtResource("1_8k17u")]
+position = Vector2(259, 212)
+metadata/_edit_lock_ = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_0e5t8")
+autoplay = true
+
+[node name="GameTimer" type="Timer" parent="."]
+wait_time = 45.0
+one_shot = true
+autostart = true
+script = ExtResource("7_k6ej6")
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="ProgressBar" type="ProgressBar" parent="UI"]
+offset_left = 385.0
+offset_right = 1535.0
+offset_bottom = 64.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+max_value = 15.0
+value = 5.0
+show_percentage = false
+
+[node name="StarsCount" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 128.0
+offset_bottom = 64.0
+
+[node name="TextureRect" type="TextureRect" parent="UI/StarsCount"]
+layout_mode = 2
+offset_right = 512.0
+offset_bottom = 512.0
+scale = Vector2(0.125, 0.125)
+texture = ExtResource("7_b5e7e")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="UI/StarsCount"]
+layout_mode = 2
+offset_left = 64.0
+offset_right = 148.0
+offset_bottom = 64.0
+theme_override_font_sizes/bold_font_size = 46
+bbcode_enabled = true
+text = "[center][b]0[/b][/center]"
+fit_content = true
+
+[node name="Pseudo" type="RichTextLabel" parent="UI"]
+offset_left = 1540.0
+offset_right = 1920.0
+offset_bottom = 118.0
+theme = ExtResource("9_irv8p")
+bbcode_enabled = true
+text = "[center]0123456789abcdef#0000[/center]"
+
+[connection signal="timeout" from="Stars/Timer" to="Stars" method="_on_timer_timeout"]
+[connection signal="timeout" from="Urchins/Timer" to="Urchins" method="_on_timer_timeout"]
+[connection signal="timeout" from="GameTimer" to="GameTimer" method="_on_timeout"]

@@ -1,0 +1,27 @@
+[gd_scene load_steps=6 format=3 uid="uid://biwviurivdmd4"]
+
+[ext_resource type="Script" path="res://scripts/star.gd" id="1_4qupl"]
+[ext_resource type="Texture2D" uid="uid://dgitjm0hrk2bn" path="res://images/starfish.png" id="1_i8d28"]
+[ext_resource type="AudioStream" uid="uid://biedykllog33t" path="res://sounds/whoo.mp3" id="3_b7qib"]
+[ext_resource type="AudioStream" uid="uid://thsoaljtscs5" path="res://sounds/nyah.mp3" id="4_eg5b5"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fkx44"]
+radius = 63.5
+
+[node name="Star" type="CharacterBody2D" groups=["star"]]
+script = ExtResource("1_4qupl")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("1_i8d28")
+
+[node name="NewSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_b7qib")
+
+[node name="DieSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_eg5b5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_fkx44")
+
+[connection signal="finished" from="DieSound" to="." method="_on_die_sound_finished"]

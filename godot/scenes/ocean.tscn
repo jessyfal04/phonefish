@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://d1728d0csealg"]
+
+[sub_resource type="Gradient" id="Gradient_gtald"]
+colors = PackedColorArray(0.505882, 0.92549, 0.92549, 1, 0.454902, 0.72549, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_32xwt"]
+gradient = SubResource("Gradient_gtald")
+metadata/_snap_enabled = true
+
+[sub_resource type="Gradient" id="Gradient_4tg3b"]
+offsets = PackedFloat32Array(0.0041841, 1)
+colors = PackedColorArray(0.635294, 0.607843, 0.996078, 0, 0.635294, 0.607843, 0.996078, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_2qis8"]
+gradient = SubResource("Gradient_4tg3b")
+fill_to = Vector2(0, 1)
+
+[node name="Ocean" type="Node2D"]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 3000.0
+offset_bottom = 1500.0
+texture = SubResource("GradientTexture2D_32xwt")
+metadata/_edit_lock_ = true
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+offset_right = 3000.0
+offset_bottom = 1500.0
+texture = SubResource("GradientTexture2D_2qis8")
+metadata/_edit_lock_ = true
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+metadata/_edit_lock_ = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PackedVector2Array(7, 11, -1, 1495, 3003, 1499, 3003, 3, -209, -5, 2215, -153, 3579, 55, 2927, 1815, -281, 1523)

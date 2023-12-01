@@ -1,0 +1,60 @@
+[gd_scene load_steps=9 format=3 uid="uid://tfmupxd17gly"]
+
+[ext_resource type="Script" path="res://scripts/fish.gd" id="1_j0edj"]
+[ext_resource type="Texture2D" uid="uid://cut14rp1rs7a7" path="res://images/clown-fish.png" id="1_q7usp"]
+[ext_resource type="Texture2D" uid="uid://cvy1s750612rs" path="res://images/bubbles.png" id="3_osftv"]
+[ext_resource type="AudioStream" uid="uid://dsfl4jfd0mrtt" path="res://sounds/plouf.wav" id="4_py563"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ddhpn"]
+particle_flag_disable_z = true
+gravity = Vector3(0, -98, 0)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_egehe"]
+radius = 86.56
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7hx6h"]
+radius = 128.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jaj8y"]
+radius = 256.0
+
+[node name="Fish" type="CharacterBody2D"]
+script = ExtResource("1_j0edj")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+z_index = -1
+process_material = SubResource("ParticleProcessMaterial_ddhpn")
+texture = ExtResource("3_osftv")
+lifetime = 5.0
+explosiveness = 0.2
+randomness = 0.2
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("1_q7usp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_egehe")
+
+[node name="Plouf" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_py563")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+limit_left = 0
+limit_top = 0
+limit_right = 3000
+limit_bottom = 1500
+position_smoothing_enabled = true
+
+[node name="AreaDamage" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaDamage"]
+shape = SubResource("CircleShape2D_7hx6h")
+debug_color = Color(0, 0.6, 0.701961, 0.419608)
+
+[node name="AreaCatch" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AreaCatch"]
+shape = SubResource("CircleShape2D_jaj8y")
+
+[connection signal="body_entered" from="AreaDamage" to="." method="_on_area_damage_body_entered"]
