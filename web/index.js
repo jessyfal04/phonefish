@@ -1,9 +1,14 @@
 
 
-
+local = false
 function chargerScores() {
     const Http = new XMLHttpRequest();
-    const url='http://localhost:5000/scores/all';
+        
+    if (local)
+        var url='http://localhost:5000/scores/all';
+    else
+        var url='https://vps.jessyfallavier.dev/phonefish/api/scores/all';    
+
     Http.open("GET", url);
     Http.send();
 
