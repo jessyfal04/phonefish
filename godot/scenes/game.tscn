@@ -1,14 +1,14 @@
-[gd_scene load_steps=10 format=3 uid="uid://c8p721fvgyf1u"]
+[gd_scene load_steps=10 format=3 uid="uid://dqnuqenp16rp4"]
 
-[ext_resource type="PackedScene" uid="uid://tfmupxd17gly" path="res://scenes/fish.tscn" id="1_8k17u"]
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_jmu6g"]
 [ext_resource type="PackedScene" uid="uid://d1728d0csealg" path="res://scenes/ocean.tscn" id="2_lav8c"]
-[ext_resource type="Script" path="res://scripts/stars.gd" id="3_luthl"]
-[ext_resource type="AudioStream" uid="uid://c6t2n3mjnlp1o" path="res://sounds/game.mp3" id="4_0e5t8"]
-[ext_resource type="Script" path="res://scripts/urchins.gd" id="4_mur77"]
-[ext_resource type="Texture2D" uid="uid://dub66o15v6f61" path="res://images/starfishBlack.png" id="7_b5e7e"]
-[ext_resource type="Script" path="res://scripts/game_timer.gd" id="7_k6ej6"]
-[ext_resource type="Theme" uid="uid://clusl786h284" path="res://themes/new_theme.tres" id="9_irv8p"]
+[ext_resource type="Script" path="res://scripts/stars.gd" id="3_fi6nx"]
+[ext_resource type="Script" path="res://scripts/urchins.gd" id="4_7hfhm"]
+[ext_resource type="PackedScene" uid="uid://tfmupxd17gly" path="res://scenes/fish.tscn" id="5_a8dt3"]
+[ext_resource type="AudioStream" uid="uid://c6t2n3mjnlp1o" path="res://sounds/game.mp3" id="6_tlvjq"]
+[ext_resource type="Script" path="res://scripts/game_timer.gd" id="7_e7umt"]
+[ext_resource type="Texture2D" uid="uid://dub66o15v6f61" path="res://images/starfishBlack.png" id="8_vlmei"]
+[ext_resource type="Theme" uid="uid://clusl786h284" path="res://themes/new_theme.tres" id="9_2pjxi"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_jmu6g")
@@ -18,32 +18,32 @@ z_index = -1
 metadata/_edit_lock_ = true
 
 [node name="Stars" type="Node2D" parent="."]
-script = ExtResource("3_luthl")
+script = ExtResource("3_fi6nx")
 
 [node name="Timer" type="Timer" parent="Stars"]
 wait_time = 2.0
 autostart = true
 
 [node name="Urchins" type="Node2D" parent="."]
-script = ExtResource("4_mur77")
+script = ExtResource("4_7hfhm")
 
 [node name="Timer" type="Timer" parent="Urchins"]
-wait_time = 5.0
+wait_time = 4.0
 autostart = true
 
-[node name="Fish" parent="." instance=ExtResource("1_8k17u")]
+[node name="Fish" parent="." instance=ExtResource("5_a8dt3")]
 position = Vector2(259, 212)
 metadata/_edit_lock_ = true
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("4_0e5t8")
+stream = ExtResource("6_tlvjq")
 autoplay = true
 
 [node name="GameTimer" type="Timer" parent="."]
 wait_time = 45.0
 one_shot = true
 autostart = true
-script = ExtResource("7_k6ej6")
+script = ExtResource("7_e7umt")
 
 [node name="UI" type="CanvasLayer" parent="."]
 
@@ -68,7 +68,7 @@ layout_mode = 2
 offset_right = 512.0
 offset_bottom = 512.0
 scale = Vector2(0.125, 0.125)
-texture = ExtResource("7_b5e7e")
+texture = ExtResource("8_vlmei")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="UI/StarsCount"]
 layout_mode = 2
@@ -84,7 +84,7 @@ fit_content = true
 offset_left = 1540.0
 offset_right = 1920.0
 offset_bottom = 118.0
-theme = ExtResource("9_irv8p")
+theme = ExtResource("9_2pjxi")
 bbcode_enabled = true
 text = "[center]0123456789abcdef#0000[/center]"
 

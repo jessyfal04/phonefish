@@ -22,7 +22,32 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.454902, 0.72549, 1, 1)
 
-[node name="HBoxContainer" type="HFlowContainer" parent="."]
+[node name="ConnectionInfos" type="RichTextLabel" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -590.0
+offset_top = -192.5
+offset_right = 590.0
+offset_bottom = 192.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_g6qx0")
+bbcode_enabled = true
+text = "[center]
+[b] Connectez vous sur la page mobile avec ces infos : [/b]
+
+Pseudo : yepssy 
+Identifier : 0703
+Code : AAAA 
+[/center]"
+fit_content = true
+
+[node name="PseudoContainer" type="HFlowContainer" parent="."]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -37,7 +62,7 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
-[node name="PseudoLabel" type="RichTextLabel" parent="HBoxContainer"]
+[node name="PseudoLabel" type="RichTextLabel" parent="PseudoContainer"]
 custom_minimum_size = Vector2(600, 100)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -47,14 +72,14 @@ bbcode_enabled = true
 text = "[center][b]Choisissez un pseudo : [/b][/center]"
 fit_content = true
 
-[node name="Pseudo" type="LineEdit" parent="HBoxContainer"]
+[node name="Pseudo" type="LineEdit" parent="PseudoContainer"]
 custom_minimum_size = Vector2(400, 100)
 layout_mode = 2
 theme = ExtResource("2_g6qx0")
 placeholder_text = "yepssy"
 max_length = 16
 
-[node name="VerifyPseudo" type="Button" parent="HBoxContainer"]
+[node name="VerifyPseudo" type="Button" parent="PseudoContainer"]
 custom_minimum_size = Vector2(1200, 100)
 layout_mode = 2
 theme = ExtResource("2_g6qx0")
@@ -65,8 +90,8 @@ text = "Vérifier le Pseudo"
 [node name="Key" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_2ougt")
 
-[connection signal="text_changed" from="HBoxContainer/Pseudo" to="." method="_on_pseudo_text_changed"]
-[connection signal="text_submitted" from="HBoxContainer/Pseudo" to="." method="_on_pseudo_text_submitted"]
-[connection signal="pressed" from="HBoxContainer/VerifyPseudo" to="." method="playKey"]
-[connection signal="pressed" from="HBoxContainer/VerifyPseudo" to="." method="_on_verify_pseudo_pressed"]
+[connection signal="text_changed" from="PseudoContainer/Pseudo" to="." method="_on_pseudo_text_changed"]
+[connection signal="text_submitted" from="PseudoContainer/Pseudo" to="." method="_on_pseudo_text_submitted"]
+[connection signal="pressed" from="PseudoContainer/VerifyPseudo" to="." method="_on_verify_pseudo_pressed"]
+[connection signal="pressed" from="PseudoContainer/VerifyPseudo" to="." method="playKey"]
 [connection signal="request_completed" from="HTTPRequest" to="." method="_on_http_request_request_completed"]

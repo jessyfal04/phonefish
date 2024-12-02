@@ -60,12 +60,13 @@ func _physics_process(delta : float) -> void:
 		coolDownCatch = max(coolDownCatch - delta, 0);
 		sprite2D.self_modulate = Color("white") * (1-coolDownCatch) + Color("#a29bfe") * coolDownCatch;
 		
-	if (Input.is_action_just_released("catch")):
+	if (Input.is_action_pressed("catch")):
+		Input.action_release("catch");
 		catch();
 
 func catch() -> void:
 	if coolDownCatch <= 0:
-		coolDownCatch = 1;
+		coolDownCatch = 1.0;
 		var listNodes : Array = ($"AreaCatch" as Area2D).get_overlapping_bodies();
 		for node2D : Node2D in listNodes:
 			if node2D.is_in_group("star"):

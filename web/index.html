@@ -19,7 +19,7 @@
                     Phonefish
                   </p>
                   <p class="subtitle">
-                    Bienvenue sur un projet mellant Godot, IoT et IA :)
+                    Bienvenue sur un Phonefish projet mellant Godot et IoT :)
                   </p>
                 </div>
               </section>
@@ -47,9 +47,19 @@
         <div class="column is-half px-5">
             <article class="box notification is-info">
                 <h2 class="title is-2">Classement</h2>
-                <span id="score-list" class="block">
-                    
-                </span>
+                <div class="columns">
+                    <div class="column is-half">
+                        <h3 class="title is-3">All-Time</h3>
+                        <span id="score-all-list" class="block"></span>
+                    </div>
+
+                    <div class="column is-half">
+                        <h3 class="title is-3">Récent</h3>
+                        <span id="score-recent-list" class="block"></span>
+                    </div>
+                </div>
+                
+
                 <button class="button is-success block" onclick="chargerScores()">Recharger</button>
             </article>
         </div>

@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://c3di4e7v6idnb"]
+[gd_scene load_steps=3 format=3 uid="uid://c3di4e7v6idnb"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_vdyvx"]
+[ext_resource type="Script" path="res://scripts/websocket.gd" id="2_3etrr"]
 
 [node name="Main" type="Control"]
 layout_mode = 3
@@ -10,3 +11,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_vdyvx")
+
+[node name="WebSocket" type="Node" parent="."]
+script = ExtResource("2_3etrr")

@@ -1,6 +1,8 @@
 from flask import Flask, jsonify, request, abort
 import apiProcess
 import secrets
+import random
+import string
 from flask_cors import CORS
 
 app = Flask(__name__)
@@ -13,13 +15,15 @@ def usersRegister():
     pseudo = args.get("pseudo").lower()
     identifier = apiProcess.getIdentifierFromPseudo(pseudo)
     token = secrets.token_hex(32//2)
+    code = ''.join(random.choice(string.ascii_uppercase) for _ in range(4))
     
-    apiProcess.execDB("INSERT INTO users (pseudo, identifier, token, date) VALUES (?, ?, ?, datetime('now'))", (pseudo, identifier, token))
+    apiProcess.execDB("INSERT INTO users (pseudo, identifier, code, token, date) VALUES (?, ?, ?, ?, datetime('now'))", (pseudo, identifier, code, token))
 
     response = {
         "pseudo" : pseudo,
         "identifier" : identifier,
-        "token": token
+        "token": token,
+        "code": code
     }
 
     return jsonify(response)
@@ -60,6 +64,15 @@ def scoresRegister():
 @app.route('/scores/all', methods=['GET'])
 def scoresAll():
     result = apiProcess.execDB("SELECT pseudo, identifier, score, date FROM users WHERE score IS NOT NULL ORDER BY score DESC, date ASC")
+    
+    keys = ["pseudo", "identifier", "score", "date"]
+    response = [{keys[index]:value for index, value in enumerate(r)} for r in result]
+    
+    return jsonify(response)
+
+@app.route('/scores/recent', methods=['GET'])
+def scoresRecent():
+    result = apiProcess.execDB("SELECT pseudo, identifier, score, date FROM users WHERE score IS NOT NULL AND date >= datetime('now','-1 day') ORDER BY score DESC, date ASC")
     
     keys = ["pseudo", "identifier", "score", "date"]
     response = [{keys[index]:value for index, value in enumerate(r)} for r in result]
