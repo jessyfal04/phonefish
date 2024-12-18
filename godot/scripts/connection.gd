@@ -46,4 +46,3 @@ func _on_pseudo_text_submitted(new_text : String) -> void:
 
 func open():
 	$"..".call("changeState", main.GAMESTATE.GAME);
-

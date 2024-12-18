@@ -79,4 +79,3 @@ func _on_area_damage_body_entered(body : Node2D) -> void:
 	if body.is_in_group("urchin"):
 		body.call("die", true);
 		$"..".call("modifyScore", -1);
-

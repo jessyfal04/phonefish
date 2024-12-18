@@ -3,3 +3,4 @@ phonefish
 #server
 gitignore
 #web_export
+*.db
