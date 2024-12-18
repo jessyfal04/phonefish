@@ -21,10 +21,10 @@ function fetchData(url, elementId) {
 }
 
 function chargerScores() {
-    const allUrl = local ? 'http://localhost:5000/scores/all' : 'https://jessyfallavier.dev/phonefish/api/scores/all';
+    const allUrl = local ? 'http://localhost:5000/scores/all' : 'https://jessyfal04.dev/api/phonefish/scores/all';
     fetchData(allUrl, "score-all-list");
 
-    const recentUrl = local ? 'http://localhost:5000/scores/recent' : 'https://jessyfallavier.dev/phonefish/api/scores/recent';
+    const recentUrl = local ? 'http://localhost:5000/scores/recent' : 'https://jessyfal04.dev/api/phonefish/scores/recent';
     fetchData(recentUrl, "score-recent-list");
 }
 

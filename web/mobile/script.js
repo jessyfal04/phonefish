@@ -30,9 +30,9 @@ window.addEventListener('shake', shakeEventDidOccur);
 
 function connect() {
     if (local)
-        webSocket = new WebSocket("ws://localhost:50001");
+        webSocket = new WebSocket("ws://jessyfal04.dev/ws/phonefish");
     else
-        webSocket = new WebSocket("wss://jessyfallavier.dev:50001");
+        webSocket = new WebSocket("wss://jessyfal04.dev/ws/phonefish");
     
     webSocket.addEventListener("open", connect_next);
     webSocket.addEventListener("close", connect_next);
