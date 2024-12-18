@@ -2,12 +2,12 @@ from flask import abort, jsonify
 from random import randint
 import sqlite3
 
-local = True
+local = False
 dburl = ""
 if local:
     dburl = "phonefish.db"
 else:
-    dburl = "/var/www/jessyfallavier.dev/phonefish/api/phonefish.db"
+    dburl = "/home/yepssy/code/phonefish/api/phonefish.db"
 def execDB(cmd:str, args:tuple=()):
     with sqlite3.connect(dburl) as conn:
         cursor = conn.cursor()
