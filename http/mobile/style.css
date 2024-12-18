@@ -1,0 +1,8 @@
+body {
+    background-color: rgb(232, 244, 245);
+    min-height: 100vh;
+}
+
+#disconnect{
+    display: none;
+}
