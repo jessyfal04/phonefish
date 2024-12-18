@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="bulma.min.css">
+    <script src="index.js"></script>
+    <link rel="shortcut icon" href="clown-fish.png" type="image/x-icon">
+    <title>PhoneFish</title>
+</head>
+<body>
+
+    <div class="columns is-vcentered is-multiline">
+        <div class="column is-full mt-2">
+            <section class="hero is-small is-primary">
+                <div class="hero-body">
+                  <p class="title">
+                    Phonefish
+                  </p>
+                  <p class="subtitle">
+                    Bienvenue sur un Phonefish projet mellant Godot et IoT :)
+                  </p>
+                </div>
+              </section>
+        </div>
+        
+        <div class="column is-half px-5">
+            <article class="box notification is-info">
+                <h3 class="title is-3">Version WEB</h3>
+                <p class="subtitle is-3">Jouez au jeu Phonefish</p>
+
+                <a href="web/">
+                    <button class="button is-success is-light">Rejoindre</button>
+                </a>
+            </article>
+
+            <article class="box notification is-info">
+                <h3 class="title is-3">Version MOBILE</h3>
+                <p class="subtitle is-3">Intéragissez avec le jeu Phonefish</p>
+                <a href="mobile/">
+                    <button class="button is-success is-light">Rejoindre</button>
+                </a>
+            </article>
+        </div>
+
+        <div class="column is-half px-5">
+            <article class="box notification is-info">
+                <h2 class="title is-2">Classement</h2>
+                <div class="columns">
+                    <div class="column is-half">
+                        <h3 class="title is-3">All-Time</h3>
+                        <span id="score-all-list" class="block"></span>
+                    </div>
+
+                    <div class="column is-half">
+                        <h3 class="title is-3">Récent</h3>
+                        <span id="score-recent-list" class="block"></span>
+                    </div>
+                </div>
+                
+
+                <button class="button is-success block" onclick="chargerScores()">Recharger</button>
+            </article>
+        </div>
+    </div>
+    
+</body>
+</html>
