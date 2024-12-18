@@ -4,10 +4,10 @@ import ssl
 import json
 import process
 
-local = True
-if not local:
-    ssl_context = ssl.SSLContext(ssl.PROTOCOL_TLS_SERVER)
-    ssl_context.load_cert_chain("/etc/letsencrypt/live/jessyfallavier.dev/fullchain.pem", "/etc/letsencrypt/live/jessyfallavier.dev/privkey.pem")
+local = False
+# if not local:
+#     ssl_context = ssl.SSLContext(ssl.PROTOCOL_TLS_SERVER)
+#     ssl_context.load_cert_chain("/etc/letsencrypt/live/jessyfallavier.dev/fullchain.pem", "/etc/letsencrypt/live/jessyfallavier.dev/privkey.pem")
 
 async def message_handler(websocket, path):
     print(f"O : {str(websocket.remote_address)}")
@@ -33,9 +33,9 @@ async def handle_message(json_data, websocket):
 async def main():
     print("Serveur en Ouverture\n")
     if not local:
-        server = await websockets.serve(message_handler, "87.106.121.154", 50001, ssl=ssl_context)
+        server = await websockets.serve(message_handler, "127.0.0.1", 8111)
     else:
-        server = await websockets.serve(message_handler, "localhost", 50001)
+        server = await websockets.serve(message_handler, "localhost", 8111)
 
     await server.wait_closed()
     print("Serveur Fermé\n")

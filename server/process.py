@@ -2,7 +2,7 @@ import sqlite3
 import json
 from server import local
 
-dburl = "../api/phonefish.db" if local else "/var/www/jessyfallavier.dev/phonefish/api/phonefish.db"
+dburl = "../api/phonefish.db" if local else "/home/yepssy/code/phonefish/api/phonefish.db"
 def execDB(cmd:str, args:tuple=()):
     with sqlite3.connect(dburl) as conn:
         cursor = conn.cursor()
