@@ -8,7 +8,7 @@ func _ready() -> void:
 	set_process(false);
 
 func connectWS() -> void:
-	websocket.connect_to_url("wss://jessyfallavier.dev:50001");
+	websocket.connect_to_url("wss://jessyfal04.dev/ws/phonefish");
 	needToAccept = true;
 
 func send(message : Dictionary) -> void:

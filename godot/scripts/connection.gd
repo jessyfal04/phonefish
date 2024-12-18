@@ -32,7 +32,7 @@ func _on_verify_pseudo_pressed() -> void:
 	($"PseudoContainer/VerifyPseudo" as Button).self_modulate = Color("#FFFFFF");
 	pseudo = ($"PseudoContainer/Pseudo" as LineEdit).text;
 	
-	httpRequest.request("https://jessyfallavier.dev/phonefish/api/users/register?pseudo=%s" % [pseudo], [], HTTPClient.METHOD_POST);
+	httpRequest.request("https://jessyfal04.dev/api/phonefish/users/register?pseudo=%s" % [pseudo], [], HTTPClient.METHOD_POST);
 	#httpRequest.request("http://127.0.0.1:5000/users/register?pseudo=%s" % [pseudo], [], HTTPClient.METHOD_POST);
 func playKey() -> void:
 	($"Key" as AudioStreamPlayer).play();
